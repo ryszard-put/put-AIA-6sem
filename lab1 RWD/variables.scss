@@ -1,0 +1,17 @@
+$root-font-size: 16px;
+$base-color: rgb(224, 228, 204);
+$mediaTabletBreakpoint: 600px;
+$mediaDesktopBreakpoint: 1024px;
+$itemTitleColors: rgb(105, 210, 231), rgb(243, 134, 48), rgb(233, 174, 175);
+
+@mixin tablet {
+  @media (min-width: #{$mediaTabletBreakpoint}) and (max-width: #{$mediaDesktopBreakpoint - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$mediaDesktopBreakpoint}) {
+    @content;
+  }
+}
