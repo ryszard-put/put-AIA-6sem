@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "God of War (2018)",
+      "description": "After wiping out the gods of Mount Olympus, Kratos moves on to the frigid lands of Scandinavia, where he and his son must embark on an odyssey across a dangerous world of gods and monsters.",
+      "image": "https://m.media-amazon.com/images/M/MV5BMmVjMzkyYWMtNDNhNi00ZWI3LTgxNGUtODRkMWYxNjZmNDI5XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "Item #2",
+      "description": "Lorem ipsum dolor sit amet",
+      "image": "",
+      "rating": 4
+    },
+    {
+      "id": 3,
+      "name": "Item #3",
+      "description": "Lorem ipsum dolor sit amet",
+      "image": "",
+      "rating": 2
+    }
+  ]
+}
