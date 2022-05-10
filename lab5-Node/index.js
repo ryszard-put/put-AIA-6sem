@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const path = require('path');
 
-const models = require('./models');
+const { Item, Order } = require('./models');
+const populate = require('./utils/populate');
+const res = require('express/lib/response');
+
 const mongoURL = 'mongodb://127.0.0.1/shop';
 const PORT = 3000;
 
@@ -17,6 +20,8 @@ async function main() {
   const connection = mongoose.connection;
 
   connection.on('error', (err) => console.log(err));
+
+  await populate();
 
   const app = express();
 
@@ -34,7 +39,42 @@ async function main() {
     })
   );
 
-  app.get('/', (_, res) => res.render('index'));
+  app.use((req, res, next) => {
+    if (!req.session)
+      res.status(500).send({ error: 'Session not established' });
+    if (!req.session.cart) req.session.cart = { items: [] };
+
+    // console.log(req.session);
+    console.log(req.sessionID);
+    next();
+  });
+
+  app.get('/', async (_, res) => {
+    const items = await Item.find({});
+    res.render('index', { items });
+  });
+
+  app.get('/add-to-cart', (req, res) => {
+    console.log(req.query);
+    if (req.query.id) {
+      if (!req.session.cart.items.includes(req.query.id)) {
+        req.session.cart.items.push(req.query.id);
+      }
+    } else {
+      console.log('no id');
+    }
+    res.redirect('/');
+  });
+
+  app.get('/cart', async (req, res) => {
+    const { items } = req.session.cart;
+    console.log(items);
+    const cart = await Item.find({
+      _id: { $in: items.map((id) => mongoose.Types.ObjectId(id)) },
+    });
+    console.log(cart);
+    res.render('cart', { cart });
+  });
 
   app.listen(PORT, () => console.log(`Server started localhost:${PORT}`));
 }

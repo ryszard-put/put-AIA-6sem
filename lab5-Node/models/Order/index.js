@@ -1,7 +1,14 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const { ItemSchema } = require('../Item');
 
-const OrderSchema = mongoose.Schema({});
+const OrderSchema = Schema({
+  user: {
+    type: String,
+    required: true,
+  },
+  items: [ItemSchema],
+});
 
-const Order = mongoose.model('Order', OrderSchema);
+const Order = model('Order', OrderSchema);
 
-module.exports = Order;
+module.exports = { Order, OrderSchema };
