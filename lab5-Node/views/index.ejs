@@ -3,13 +3,13 @@
   <h1 class="text-center text-5xl my-8">Sklep z NFT</h1>
   <div class="px-5 py-2 grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
     <% for(const item of items){ %>
-      <div class="w-full bg-primary rounded-md h-fit">
+      <div class="w-full bg-primary rounded-md h-fit <%= item.available ? '' : 'opacity-20' %>">
         <img class="w-full rounded-md content-" src="<%= item.url %>" />
         <div class="p-4">
           <h2 class="my-4 text-2xl font-extrabold"><%= item.name %></h2>
           <p class="text-base font-normal my-4"><%= item.description %></p>
           <h2 class="my-4 text-xl font-medium text-center">Cena: <%= item.price %>$</h2>
-          <a role="button" href="/add-to-cart?id=<%= item._id %>" class="bg-accent w-full px-3 py-1 rounded-sm block text-center">Dodaj do koszyka</a>
+          <a role="button" href="/add-to-cart?id=<%= item._id %>" class="<%= item.available ? '' : 'hidden' %> bg-accent w-full px-3 py-1 rounded-sm block text-center">Dodaj do koszyka</a>
         </div>
       </div>
     <% } %>

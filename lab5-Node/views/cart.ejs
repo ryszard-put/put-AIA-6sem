@@ -1,8 +1,27 @@
 <%- include('partials/head') %>
-  <div>
-    <h1>Koszyk</h1>
-    <div>
-      
+  <div class="container mx-auto">
+    <h1 class="text-center text-5xl my-8">Koszyk</h1>
+    <div class="flex flex-row justify-between">
+      <div class="basis-9/12 h-fit">
+        <% for(const item of cart){ %>
+        <div class="<%= item.available ? '' : 'opacity-20' %> text-xl flex flex-row justify-between p-3 h-fit w-full rounded-md border-2 border-white border-solid bg-primary">
+          <div class="basis-8/12"><%= item.name %></div>
+          <div class="basis-2/12"><%= item.price %>$</div>
+          <a href="/remove-from-cart?id=<%= item._id %>" class="basis-2/12 flex items-center bg-danger hover:bg-opacity-70 rounded-md">
+            <span class="self-center text-xl px-3 py-1 font-semibold whitespace-nowrap dark:text-white w-full text-center">Usuń</span>
+          </a>
+        </div>
+        <% } %>
+      </div>
+      <div class="basis-2/12">
+        <div class="h-fit rounded-md border-2 border-white border-solid">
+          <div class="border-b-2 border-b-white border-solid p-3">Liczba produktów: <%= cart.length %></div>
+          <div class="p-3">Kwota: <%= sum %>$</div>
+        </div>
+        <a href="/checkout" class="basis-2/12 flex items-center bg-accent hover:bg-opacity-70 rounded-md mt-3">
+          <span class="self-center text-xl px-3 py-1 font-semibold whitespace-nowrap dark:text-white w-full text-center">Kup teraz</span>
+        </a>
+      </div>
     </div>
   </div>
   <%- include('partials/html-end') %>

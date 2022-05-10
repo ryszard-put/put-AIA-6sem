@@ -66,14 +66,42 @@ async function main() {
     res.redirect('/');
   });
 
+  app.get('/remove-from-cart', (req, res) => {
+    console.log(req.query);
+    if (req.query.id) {
+      req.session.cart.items = req.session.cart.items.filter(
+        (x) => x !== req.query.id
+      );
+    } else {
+      console.log('no id');
+    }
+    res.redirect('/cart');
+  });
+
   app.get('/cart', async (req, res) => {
     const { items } = req.session.cart;
     console.log(items);
     const cart = await Item.find({
       _id: { $in: items.map((id) => mongoose.Types.ObjectId(id)) },
     });
-    console.log(cart);
-    res.render('cart', { cart });
+    cart.forEach((x) => console.log(x.price));
+    const sum = cart
+      .filter((x) => x.available)
+      .reduce((prev, curr) => prev + curr.price, 0);
+    res.render('cart', { cart, sum });
+  });
+
+  app.get('/checkout', async (req, res) => {
+    const { items } = req.session.cart;
+    await Item.updateMany(
+      {
+        _id: { $in: items.map((id) => mongoose.Types.ObjectId(id)) },
+        available: true,
+      },
+      { available: false }
+    );
+    req.session.cart.items = [];
+    res.redirect('/');
   });
 
   app.listen(PORT, () => console.log(`Server started localhost:${PORT}`));
