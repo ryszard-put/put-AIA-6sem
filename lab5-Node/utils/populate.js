@@ -23,27 +23,27 @@ const populate = async () => {
       available: true,
     },
     {
-      name: 'Mean Politician M0nke #0003',
+      name: 'Bored Ape #0003',
       description:
         'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet',
       price: 100,
-      url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/571/844/0a6.jpg',
+      url: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg',
       available: true,
     },
     {
-      name: 'Mean Politician M0nke #0004',
+      name: 'Adidas Ape #0004',
       description:
         'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet',
       price: 10,
-      url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/571/844/0a6.jpg',
+      url: 'https://www.ledgerinsights.com/wp-content/uploads/2021/12/adidas-nft-bored-ape.jpg',
       available: true,
     },
     {
-      name: 'Mean Politician M0nke #0005',
+      name: 'Bored Wukong #0005',
       description:
         'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet',
       price: 19,
-      url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/571/844/0a6.jpg',
+      url: 'https://1734811051.rsc.cdn77.org/data/images/full/400671/bored-wukong-nft-creator-denies-accusation-about-its-strong-resemblance-to-bored-ape-yacht-club.jpg',
       available: true,
     }
   );
